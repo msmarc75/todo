@@ -32,7 +32,7 @@ st.set_page_config(page_title="Todoist-like Todo List", page_icon="✅", layout=
 st.title("Todo List App")
 
 # Charger l'image d'icône depuis l'URL
-icon_url = "https://upload.wikimedia.org/wikipedia/commons/7/7e/To-do-list-checklist-icon.png"
+icon_url = "https://upload.wikimedia.org/wikipedia/commons/a/a0/Logo_2020_Google.png"
 
 # Définir les en-têtes de la requête pour simuler un navigateur
 headers = {
