@@ -1,5 +1,7 @@
 import streamlit as st
 from PIL import Image
+import requests
+from io import BytesIO
 import datetime
 
 # Fonction pour initialiser la liste des tâches
@@ -29,8 +31,10 @@ init_todo_list()
 st.set_page_config(page_title="Todoist-like Todo List", page_icon="✅", layout="wide")
 st.title("Todo List App")
 
-# Image d'icône
-todo_icon = Image.open("https://upload.wikimedia.org/wikipedia/commons/7/7e/To-do-list-checklist-icon.png")
+# Charger l'image d'icône depuis l'URL
+icon_url = "https://upload.wikimedia.org/wikipedia/commons/7/7e/To-do-list-checklist-icon.png"
+response = requests.get(icon_url)
+todo_icon = Image.open(BytesIO(response.content))
 st.image(todo_icon, width=100)
 
 # Entrée de nouvelle tâche
@@ -61,11 +65,4 @@ if st.session_state.todos:
                     st.experimental_rerun()
 
         with col3:
-            if st.button("❌ Supprimer", key=f"delete_{i}", on_click=delete_todo, args=(i,)):
-                st.experimental_rerun()
-
-else:
-    st.write("Aucune tâche à afficher. Ajoutez une nouvelle tâche ci-dessus.")
-
-# Affichage de l'heure actuelle
-st.write(f"Heure actuelle : {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+            if st.button("❌ Supprimer", key=f"delete
