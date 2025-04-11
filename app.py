@@ -1,7 +1,4 @@
 import streamlit as st
-from PIL import Image
-import requests
-from io import BytesIO
 import datetime
 
 # Fonction pour initialiser la liste des tâches
@@ -30,26 +27,6 @@ init_todo_list()
 # Titre de l'application
 st.set_page_config(page_title="Todoist-like Todo List", page_icon="✅", layout="wide")
 st.title("Todo List App")
-
-# Définir les en-têtes de la requête pour simuler un navigateur
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-}
-
-# Récupérer l'image depuis l'URL avec les en-têtes
-response = requests.get(icon_url, headers=headers)
-
-# Vérifier si la réponse est valide (code 200) et si le contenu est une image
-if response.status_code == 200:
-    try:
-        # Essayer de charger l'image
-        todo_icon = Image.open(BytesIO(response.content))
-        st.image(todo_icon, width=100)
-    except Exception as e:
-        # Si l'image ne peut pas être ouverte, afficher l'erreur
-        st.error(f"Erreur lors de l'ouverture de l'image : {e}")
-else:
-    st.error(f"Échec du téléchargement de l'image, code de réponse HTTP : {response.status_code}")
 
 # Entrée de nouvelle tâche
 with st.container():
