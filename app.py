@@ -34,8 +34,13 @@ st.title("Todo List App")
 # Charger l'image d'icône depuis l'URL
 icon_url = "https://upload.wikimedia.org/wikipedia/commons/7/7e/To-do-list-checklist-icon.png"
 
-# Récupérer l'image depuis l'URL
-response = requests.get(icon_url)
+# Définir les en-têtes de la requête pour simuler un navigateur
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+}
+
+# Récupérer l'image depuis l'URL avec les en-têtes
+response = requests.get(icon_url, headers=headers)
 
 # Vérifier si la réponse est valide (code 200) et si le contenu est une image
 if response.status_code == 200:
