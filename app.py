@@ -65,4 +65,12 @@ if st.session_state.todos:
                     st.experimental_rerun()
 
         with col3:
-            if st.button("❌ Supprimer", key=f"delete
+            # Correction de la ligne qui cause l'erreur de syntaxe
+            if st.button("❌ Supprimer", key=f"delete_{i}", on_click=delete_todo, args=(i,)):
+                st.experimental_rerun()
+
+else:
+    st.write("Aucune tâche à afficher. Ajoutez une nouvelle tâche ci-dessus.")
+
+# Affichage de l'heure actuelle
+st.write(f"Heure actuelle : {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
