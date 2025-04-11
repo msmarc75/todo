@@ -31,9 +31,6 @@ init_todo_list()
 st.set_page_config(page_title="Todoist-like Todo List", page_icon="✅", layout="wide")
 st.title("Todo List App")
 
-# Charger l'image d'icône depuis l'URL
-icon_url = "https://upload.wikimedia.org/wikipedia/commons/a/a0/Logo_2020_Google.png"
-
 # Définir les en-têtes de la requête pour simuler un navigateur
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
