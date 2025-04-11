@@ -33,9 +33,21 @@ st.title("Todo List App")
 
 # Charger l'image d'icône depuis l'URL
 icon_url = "https://upload.wikimedia.org/wikipedia/commons/7/7e/To-do-list-checklist-icon.png"
+
+# Récupérer l'image depuis l'URL
 response = requests.get(icon_url)
-todo_icon = Image.open(BytesIO(response.content))
-st.image(todo_icon, width=100)
+
+# Vérifier si la réponse est valide (code 200) et si le contenu est une image
+if response.status_code == 200:
+    try:
+        # Essayer de charger l'image
+        todo_icon = Image.open(BytesIO(response.content))
+        st.image(todo_icon, width=100)
+    except Exception as e:
+        # Si l'image ne peut pas être ouverte, afficher l'erreur
+        st.error(f"Erreur lors de l'ouverture de l'image : {e}")
+else:
+    st.error(f"Échec du téléchargement de l'image, code de réponse HTTP : {response.status_code}")
 
 # Entrée de nouvelle tâche
 with st.container():
@@ -65,7 +77,6 @@ if st.session_state.todos:
                     st.experimental_rerun()
 
         with col3:
-            # Correction de la ligne qui cause l'erreur de syntaxe
             if st.button("❌ Supprimer", key=f"delete_{i}", on_click=delete_todo, args=(i,)):
                 st.experimental_rerun()
 
